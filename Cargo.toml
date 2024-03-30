@@ -1,0 +1,20 @@
+[package]
+name = "envini"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rust-ini = "0.21"
+lazy_static = "1.4"
+itertools = "0.12"
+
+[dev-dependencies]
+assertor = "0.0"
+pretty_assertions = "1.4"
+uuid = { version = "1.8",features = ["v4"] }
+
+[profile.release]
+panic = "abort" # Strip expensive panic clean-up logic
+codegen-units = 1 # Compile crates one after another so the compiler can optimize better
+lto = true # Enables link to optimizations
+strip = true # Strip debug symbols
