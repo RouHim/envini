@@ -5,7 +5,6 @@ edition = "2021"
 
 [dependencies]
 rust-ini = "0.21"
-lazy_static = "1.4"
 itertools = "0.12"
 
 [dev-dependencies]

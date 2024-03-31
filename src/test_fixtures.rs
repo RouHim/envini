@@ -50,6 +50,12 @@ ServerName=KF2Server
 GamePassword=KF2Password
 "#;
 
+pub const TEST_INI_FILE_GOOD_2: &str = r#"
+[Engine.ServerActors]
+ServerActors=IpDrv.MasterServerUplink
+ServerPlaylist=KFGame.KFGameType
+"#;
+
 pub const TEST_INI_FILE_NO_SECTION_1: &str = r#"
 Encoding=UTF-8
 "#;
