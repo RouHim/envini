@@ -3,9 +3,9 @@ use std::env;
 use ini::Ini;
 
 /// Holds the mapping between the environment variable and the INI file
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct ConfigEntry {
-    pub env_name: String,
+    pub env_var_name: String,
     pub ini_file: String,
     pub ini_section: Option<String>,
     pub ini_property_name: String,
@@ -71,7 +71,7 @@ fn to_config_entry(ini_data: &Ini, env_config_section_name: &str) -> ConfigEntry
         .to_string();
 
     ConfigEntry {
-        env_name,
+        env_var_name: env_name,
         ini_file,
         ini_section,
         ini_property_name,

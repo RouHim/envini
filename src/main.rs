@@ -1,9 +1,12 @@
 use std::env;
 
 mod config_parser;
+mod ini_writer;
+
 #[cfg(test)]
 mod config_parser_test;
-mod ini_writer;
+#[cfg(test)]
+mod ini_writer_test;
 #[cfg(test)]
 mod test_fixtures;
 
