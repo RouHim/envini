@@ -128,8 +128,12 @@ ServerName = Default server name
 
 ```yaml
 services:
-   game-server:
-      image: my-game-server
-      environment:
-         SERVER_NAME: "My fancy server"
+  game-server:
+    image: my-game-server
+    environment:
+      SERVER_NAME: "My fancy server"
 ```
+
+When starting the server with the docker-compose file, the environment variable `SERVER_NAME` will be applied to the
+`ServerName` property in the `server-config.ini` file.
+
