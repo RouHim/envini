@@ -22,6 +22,20 @@ Use the build from the [latest release](https://github.com/RouHim/envini/release
 
 ## Usage
 
+### How it works
+
+Follow this steps to use envini in an container:
+
+1) Declare the mapping between the environment variables and the ini file properties in a mapping file.
+2) Add booth, the envini binary and the mapping file to the container.
+3) Declare the environment variables you want to map in the container file.
+4) Make sure to execute _envini_ before the actual server starts, to apply the mapping every time the container
+   starts. (E.g. in an entrypoint script)
+5) The environment variables are evaluated and the values are written to the ini file.
+6) Start the actual server.
+
+### Mapping configuration
+
 First you have to create a mapping configuration file,
 which defines the mapping between the environment variables and the ini file properties.
 Example `envini_mapping.ini`:
@@ -31,9 +45,17 @@ Example `envini_mapping.ini`:
 ini_file = server-config.ini
 ini_section = Engine.GameReplicationInfo
 ini_key = ServerName
+
+[KF2_SERVER_PORT]
+ini_file = server-config.ini
+ini_section = Engine.GameReplicationInfo
+ini_key = ServerPort
 ```
 
 ### Parameter
+
+Each section in the mapping file represents a mapping between an environment variable and an ini property.
+The following parameters per section are available:
 
 | Name                       | Description                                                                                   | Example                      |
 |----------------------------|-----------------------------------------------------------------------------------------------|------------------------------|
@@ -50,3 +72,63 @@ envini <path/to/config.ini>
 
 This will evaluate the configured environment variables,
 and writes the values to the ini file as configured in the config file.
+
+## Example implementation
+
+Here we have an example implementation of a container using envini.
+
+### envini_mapping.ini
+
+```ini
+[SERVER_NAME]
+ini_file = server-config.ini
+ini_section = GameSettings
+ini_key = ServerName
+```
+
+### Dockerfile
+
+```dockerfile
+FROM ubuntu:latest
+ENV SERVER_NAME=""
+
+# Install envini
+COPY envini /envini
+COPY envini_mapping.ini /envini_mapping.ini
+
+# Install the game server
+COPY game-server /server/game-server
+COPY server-config.ini /server/server-config.ini
+
+# Start the server
+ENTRYPOINT ["/entrypoint.sh"]
+```
+
+entrypoint.sh
+
+```shell
+#!/bin/bash
+
+# Apply the mapping
+/envini /envini_mapping.ini
+
+# Start the server
+/server/game-server
+```
+
+### server-config.ini
+
+```ini
+[GameSettings]
+ServerName = MyServer
+```
+
+### docker-compose.yml
+
+```yaml
+services:
+   game-server:
+      image: my-game-server
+      environment:
+         SERVER_NAME: "MyServer"
+```
