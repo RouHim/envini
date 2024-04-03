@@ -101,10 +101,11 @@ COPY game-server /server/game-server
 COPY server-config.ini /server/server-config.ini
 
 # Start the server
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 ```
 
-entrypoint.sh
+### entrypoint.sh
 
 ```shell
 #!/bin/bash
@@ -120,7 +121,7 @@ entrypoint.sh
 
 ```ini
 [GameSettings]
-ServerName = MyServer
+ServerName = Default server name
 ```
 
 ### docker-compose.yml
@@ -130,5 +131,5 @@ services:
    game-server:
       image: my-game-server
       environment:
-         SERVER_NAME: "MyServer"
+         SERVER_NAME: "My fancy server"
 ```
