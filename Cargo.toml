@@ -4,13 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rust-ini = "0.21"
+rust-ini = { git = "https://github.com/RouHim/rust-ini", branch = "feature/128-add-duplicate-properties" }
 itertools = "0.12"
 
 [dev-dependencies]
 assertor = "0.0"
 pretty_assertions = "1.4"
-uuid = { version = "1.8",features = ["v4"] }
+uuid = { version = "1.8", features = ["v4"] }
 
 [profile.release]
 panic = "abort" # Strip expensive panic clean-up logic

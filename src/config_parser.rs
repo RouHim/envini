@@ -3,13 +3,14 @@ use std::env;
 use ini::Ini;
 
 /// Holds the mapping between the environment variable and the INI file
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct ConfigEntry {
     pub env_var_name: String,
     pub ini_file: String,
     pub ini_section: Option<String>,
     pub ini_property_name: String,
     pub ini_property_value: Option<String>,
+    pub expand: bool,
 }
 
 /// Parses the app configuration
@@ -70,11 +71,22 @@ fn to_config_entry(ini_data: &Ini, env_config_section_name: &str) -> ConfigEntry
         .unwrap_or_else(|| panic!("No ini_key found for section {}", env_config_section_name))
         .to_string();
 
+    let expand = ini_config_section
+        .get("expand")
+        .map(|s| s.parse::<bool>().unwrap())
+        .unwrap_or(false);
+
+    let _create = ini_config_section
+        .get("create")
+        .map(|s| s.parse::<bool>().unwrap())
+        .unwrap_or(false);
+
     ConfigEntry {
         env_var_name: env_name,
         ini_file,
         ini_section,
         ini_property_name,
         ini_property_value,
+        expand,
     }
 }

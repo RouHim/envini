@@ -151,8 +151,7 @@ dependencies = [
 [[package]]
 name = "rust-ini"
 version = "0.21.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d625ed57d8f49af6cfa514c42e1a71fadcff60eb0b1c517ff82fe41aa025b41"
+source = "git+https://github.com/RouHim/rust-ini?branch=feature/128-add-duplicate-properties#d520f117c677b4e422e244963d40b2df3700a73d"
 dependencies = [
  "cfg-if",
  "ordered-multimap",

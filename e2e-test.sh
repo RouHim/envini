@@ -46,6 +46,7 @@ EXPECTED_INI_CONTENT="encoding=ascii
 
 [User]
 name=John"
+
 if [ "$INI_CONTENT" != "$EXPECTED_INI_CONTENT" ]; then
   echo "Test failed, ini file content is not as expected"
   echo ""
@@ -62,6 +63,8 @@ if [ "$INI_CONTENT" != "$EXPECTED_INI_CONTENT" ]; then
   echo "==========="
   exit 1
 fi
+
+echo "Test passed"
 
 # Clean up
 rm test.ini
