@@ -9,7 +9,9 @@ use crate::config_parser::ConfigEntry;
 /// - `config_entries` - The configuration entries to write
 pub fn write_values(config_entries: Vec<ConfigEntry>) {
     // Group by ini file
-    let entries_grouped = config_entries.iter().group_by(|entry| entry.ini_file.clone());
+    let entries_grouped = config_entries
+        .iter()
+        .group_by(|entry| entry.ini_file.clone());
 
     // Write entries per ini file
     for (ini_file, config_entries) in entries_grouped.into_iter() {

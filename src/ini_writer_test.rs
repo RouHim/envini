@@ -34,6 +34,58 @@ fn test_write_values() {
 }
 
 #[test]
+fn test_write_values_empty_ini_file() {
+    // GIVEN is an empty ini file that should be filled with a new value
+    // AND a valid config entry that points to this ini
+    // AND an envini config describing the env ini mapping
+    let ini_file_to_modify = test_fixtures::get_ini_file(TEST_INI_FILE_EMPTY_1);
+    let new_value_to_set = uuid::Uuid::new_v4().to_string();
+    let envini_config = test_fixtures::create_config(
+        &ini_file_to_modify,
+        &new_value_to_set,
+        "Engine.GameReplicationInfo",
+        "ServerName",
+    );
+
+    // WHEN the config entry is written to the ini file
+    ini_writer::write_values(vec![envini_config.clone()]);
+
+    // THEN the ini file should contain the expected values
+    let ini_data = ini::Ini::load_from_file(&ini_file_to_modify.0).unwrap();
+    let section = ini_data.section(envini_config.ini_section).unwrap();
+    assert_that!(section.get(&envini_config.ini_property_name).unwrap())
+        .is_same_string_to(envini_config.ini_property_value.unwrap());
+
+    cleanup(ini_file_to_modify);
+}
+
+#[test]
+fn test_write_values_existing_ini_non_existent_ini_property() {
+    // GIVEN is an existing ini file that should be filled with a new ini value
+    // AND a valid config entry that points to this ini
+    // AND an envini config describing the env ini mapping
+    let ini_file_to_modify = test_fixtures::get_ini_file(TEST_INI_FILE_GOOD_1);
+    let new_value_to_set = uuid::Uuid::new_v4().to_string();
+    let envini_config = test_fixtures::create_config(
+        &ini_file_to_modify,
+        &new_value_to_set,
+        "Engine.GameReplicationInfo",
+        "ServerPassword",
+    );
+
+    // WHEN the config entry is written to the ini file
+    ini_writer::write_values(vec![envini_config.clone()]);
+
+    // THEN the ini file should contain the expected values
+    let ini_data = ini::Ini::load_from_file(&ini_file_to_modify.0).unwrap();
+    let section = ini_data.section(envini_config.ini_section).unwrap();
+    assert_that!(section.get(&envini_config.ini_property_name).unwrap())
+        .is_same_string_to(envini_config.ini_property_value.unwrap());
+
+    cleanup(ini_file_to_modify);
+}
+
+#[test]
 fn test_write_values_expand() {
     // GIVEN is some ini file that should be modified
     // AND a config entry that points to this ini with variable expansion
