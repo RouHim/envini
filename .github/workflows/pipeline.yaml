@@ -120,7 +120,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ 'x86_64-musl', 'aarch64-musl', 'armv7-musl']
+        target: [ 'x86_64-musl', 'aarch64-musl', 'armv7-musleabihf', 'arm-musleabihf' ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -187,7 +187,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ 'x86_64-musl', 'aarch64-musl', 'armv7-musl']
+        target: [ 'x86_64-musl', 'aarch64-musl', 'armv7-musleabihf', 'arm-musleabihf' ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -235,6 +235,10 @@ jobs:
           export CARGO_BUILD_TARGET=$(docker run --rm messense/rust-musl-cross:${{ matrix.target }} env | grep CARGO_BUILD_TARGET | cut -d'=' -f2 | tr -d '\r')
           echo "Cargo build target is $CARGO_BUILD_TARGET"
           echo "CARGO_BUILD_TARGET=${CARGO_BUILD_TARGET}" >> $GITHUB_ENV
+          
+          # Take the first part of the target tripple and set it to the environment
+          export CPU_TARGET=$(echo $CARGO_BUILD_TARGET | cut -d'-' -f1)
+          echo "CPU_TARGET=${CPU_TARGET}" >> $GITHUB_ENV
 
 
       - name: Upload artifact
@@ -245,5 +249,5 @@ jobs:
           upload_url: ${{ env.UPLOAD_URL }}
           asset_path: target/${{ env.CARGO_BUILD_TARGET }}/release/envini
           # Updater expects: <asset name>-<semver>-<platform/target>.<extension>
-          asset_name: envini-${{ env.VERSION }}-${{ env.CARGO_BUILD_TARGET }}.tar.gz
+          asset_name: envini-${{ env.VERSION }}-${{ env.CPU_TARGET }}.tar.gz
           asset_content_type: application/octet-stream
