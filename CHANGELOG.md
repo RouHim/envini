@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/RouHim/envini/compare/1.1.0...1.2.0) (2024-04-05)
+
+
+### Bug Fixes
+
+* readme banner ([a90a9d1](https://github.com/RouHim/envini/commit/a90a9d1b741d02b4aa08b83ddc93af9fd169c2e8))
+
+
+### Features
+
+* add readme header ([515d4f0](https://github.com/RouHim/envini/commit/515d4f01956eaeffdecf3f60367ba1853aa1dee7))
+
 # [1.1.0](https://github.com/RouHim/envini/compare/1.0.0...1.1.0) (2024-04-05)
 
 
