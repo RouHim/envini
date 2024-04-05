@@ -1,6 +1,17 @@
-# ENVINI
+<p align="center">
+  <img src="https://raw.githubusercontent.com/RouHim/envini/main/banner.svg" width="500">
+</p>
 
-Allows to declarative define environment variables that are mapped to ini file values.
+<p align="center">
+   <a href="https://github.com/RouHim/envini/actions/workflows/pipeline.yaml"><img src="https://github.com/RouHim/envini/actions/workflows/pipeline.yaml/badge.svg" alt="CI"></a>
+   <a href="https://github.com/RouHim/envini/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/rouhim/envini?label=version"></a>
+   <a href="https://github.com/RouHim/envini/releases"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/RouHim/envini"></a>
+   <a href="https://buymeacoffee.com/rouhim"><img alt="Donate me" src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee"></a>
+</p>
+
+<p align="center">
+    <i>Allows to declarative define environment variables that are mapped to ini file values.</i>
+</p>
 
 ## Motivation
 
