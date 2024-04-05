@@ -138,7 +138,7 @@ jobs:
 
       - name: Build artifacts
         run: |
-          docker run --rm -it \
+          docker run --rm \
             -v "$(pwd)":/home/rust/src \
             messense/rust-musl-cross:${{ matrix.target }} \
             cargo build --release
@@ -226,7 +226,7 @@ jobs:
       - name: Build artifacts
         run: |
           # Build the binary
-          docker run --rm -it \
+          docker run --rm \
             -v "$(pwd)":/home/rust/src \
             messense/rust-musl-cross:${{ matrix.target }} \
             cargo build --release
