@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/RouHim/envini/compare/1.0.0...1.1.0) (2024-04-05)
+
+
+### Features
+
+* add e2e tests ([1e47fb4](https://github.com/RouHim/envini/commit/1e47fb49174e39874220e8c886afaac8cb9f936d))
+
 # 1.0.0 (2024-04-05)
 
 
