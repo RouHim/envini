@@ -53,12 +53,12 @@ Example `envini_mapping.ini`:
 
 ```ini
 [KF2_SERVER_NAME]
-ini_file = server-config.ini
+ini_file = /server/server-config.ini
 ini_section = Engine.GameReplicationInfo
 ini_key = ServerName
 
 [KF2_SERVER_PORT]
-ini_file = server-config.ini
+ini_file = /server/server-config.ini
 ini_section = Engine.GameReplicationInfo
 ini_key = ServerPort
 ```
@@ -92,7 +92,7 @@ Here we have an example implementation of a container using envini.
 
 ```ini
 [SERVER_NAME]
-ini_file = server-config.ini
+ini_file = /server/server-config.ini
 ini_section = GameSettings
 ini_key = ServerName
 ```
