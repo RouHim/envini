@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/RouHim/envini/compare/1.2.0...1.3.0) (2024-04-07)
+
+
+### Bug Fixes
+
+* code style ([6670a13](https://github.com/RouHim/envini/commit/6670a13bd0c23b7a33dbbde4ee4f3eb153b6d958))
+
+
+### Features
+
+* skip ini file if it does not exists ([2bdedf0](https://github.com/RouHim/envini/commit/2bdedf0561414fccf6b966edc811779cd297ab73))
+
 # [1.2.0](https://github.com/RouHim/envini/compare/1.1.0...1.2.0) (2024-04-05)
 
 
