@@ -1,6 +1,6 @@
-use std::path::PathBuf;
 use assertor::{assert_that, EqualityAssertion, StringAssertion};
 use itertools::Itertools;
+use std::path::PathBuf;
 
 use crate::test_fixtures::{
     cleanup, TEST_INI_FILE_EMPTY_1, TEST_INI_FILE_GOOD_1, TEST_INI_FILE_GOOD_2,
