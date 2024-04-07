@@ -114,7 +114,10 @@ fn ensure_test_dir() -> std::path::PathBuf {
 
 /// Cleanup the parent directory of the ini file
 pub fn cleanup(ini_file: (PathBuf, Ini)) {
-    std::fs::remove_dir_all(ini_file.0.parent().unwrap()).unwrap();
+    let file_path = ini_file.0.parent().unwrap();
+    if file_path.exists() {
+        std::fs::remove_dir_all(file_path).expect("Could not remove test directory");
+    }
 }
 
 /// Creates an envini config from the given ini file

@@ -16,7 +16,14 @@ pub fn write_values(config_entries: Vec<ConfigEntry>) {
     // Write entries per ini file
     for (ini_file, config_entries) in entries_grouped.into_iter() {
         let path_to_ini = PathBuf::from(ini_file);
-        let mut ini_file = ini::Ini::load_from_file(&path_to_ini).unwrap();
+        let ini_file = ini::Ini::load_from_file(&path_to_ini);
+
+        // If the file does not exist, skip it
+        if ini_file.is_err() {
+            println!("Could not load ini file: {:?}", path_to_ini);
+            continue;
+        }
+        let mut ini_file = ini_file.unwrap();
 
         // Iter over entries for the current ini file
         for config_entry in config_entries {

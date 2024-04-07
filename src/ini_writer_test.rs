@@ -1,3 +1,4 @@
+use std::path::PathBuf;
 use assertor::{assert_that, EqualityAssertion, StringAssertion};
 use itertools::Itertools;
 
@@ -160,20 +161,19 @@ fn test_write_values_bad_file() {
 }
 
 #[test]
-#[should_panic]
 fn test_write_values_non_existent_file() {
     // GIVEN is a non-existent ini file
     // AND a valid config entry that points to this ini
-    let ini_file_to_modify = test_fixtures::get_ini_file("");
+    let ini_file_to_modify = (PathBuf::from("non_existent.ini"), ini::Ini::new());
 
     // WHEN the config entry is written to the ini file
     let new_value_to_set = uuid::Uuid::new_v4().to_string();
     let mut envini_config =
-        test_fixtures::create_config(&ini_file_to_modify, &new_value_to_set, "", "");
+        test_fixtures::create_config(&ini_file_to_modify, &new_value_to_set, "abc", "abc");
     envini_config.ini_file = "non_existent.ini".to_string();
     ini_writer::write_values(vec![envini_config.clone()]);
 
-    // THEN the function should panic
+    // THEN the function not should panic
 
     cleanup(ini_file_to_modify);
 }
