@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 rust-ini = { git = "https://github.com/RouHim/rust-ini", branch = "feature/128-add-duplicate-properties" }
-itertools = "0.12"
+itertools = "0.12.1"
 
 [dev-dependencies]
 assertor = "0.0.2"
