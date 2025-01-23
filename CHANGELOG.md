@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/RouHim/envini/compare/1.3.13...1.4.0) (2025-01-23)
+
+
+### Features
+
+* remove itertools as dependency ([6e33d10](https://github.com/RouHim/envini/commit/6e33d1099adcf0766cae136188c41ec05e2ce0e3))
+
 ## [1.3.13](https://github.com/RouHim/envini/compare/1.3.12...1.3.13) (2025-01-17)
 
 ## [1.3.12](https://github.com/RouHim/envini/compare/1.3.11...1.3.12) (2025-01-12)
