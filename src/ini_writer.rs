@@ -1,17 +1,19 @@
-use std::path::PathBuf;
-
-use itertools::Itertools;
-
 use crate::config_parser::ConfigEntry;
+use std::path::PathBuf;
 
 /// Writes the values to the INI files
 /// # Parameters
 /// - `config_entries` - The configuration entries to write
 pub fn write_values(config_entries: Vec<ConfigEntry>) {
     // Group by ini file
-    let entries_grouped = config_entries
-        .iter()
-        .group_by(|entry| entry.ini_file.clone());
+    let mut entries_grouped: std::collections::HashMap<String, Vec<&ConfigEntry>> =
+        std::collections::HashMap::new();
+    for entry in &config_entries {
+        entries_grouped
+            .entry(entry.ini_file.clone())
+            .or_default()
+            .push(entry);
+    }
 
     // Write entries per ini file
     for (ini_file, config_entries) in entries_grouped.into_iter() {
