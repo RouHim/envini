@@ -1,3 +1,5 @@
+## [1.4.19](https://github.com/RouHim/envini/compare/1.4.18...1.4.19) (2026-03-14)
+
 ## [1.4.18](https://github.com/RouHim/envini/compare/1.4.17...1.4.18) (2026-02-15)
 
 ## [1.4.17](https://github.com/RouHim/envini/compare/1.4.16...1.4.17) (2026-01-26)
